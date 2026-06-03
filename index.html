@@ -4,57 +4,291 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korleedream — Онлайн-коучинг корейского языка</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         :root {
-            --primary: #0a2540; /* Глубокий синий под цвет логотипа */
-            --primary-light: #eef2ff;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --light: #f8fafc;
-            --accent: #2563eb;
+            --bg-main: #fcf9f5;      /* Нежный тепло-бежевый фон */
+            --primary: #4a3b32;      /* Благородный кофейно-коричневый для текста и акцентов */
+            --accent: #7c6453;       /* Мягкий кофейный оттенок */
+            --accent-light: #f3ece4; /* Светло-бежевый для выделения блоков */
+            --dark: #2d221a;         /* Очень темный коричневый для важных заголовков */
+            --gray: #7a6e65;         /* Приглушенный коричнево-серый */
+            --white: #ffffff;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
-        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; 
+        }
+
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--dark); 
+            line-height: 1.7;
+        }
         
-        header { background: white; text-align: center; padding: 40px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        /* Шапка сайта */
+        header { 
+            background: var(--white);
+            text-align: center; 
+            padding: 50px 20px; 
+            box-shadow: 0 4px 20px rgba(74, 59, 50, 0.02);
+            border-bottom: 1px solid rgba(74, 59, 50, 0.05);
+        }
+
+        .logo-container { 
+            margin-bottom: 20px; 
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .site-logo { 
+            max-width: 220px; 
+            height: auto; 
+            object-fit: contain;
+        }
         
-        /* Стили для логотипа-картинки */
-        .logo-container { margin-bottom: 15px; }
-        .site-logo { max-width: 220px; height: auto; object-fit: contain; }
+        h1 { 
+            font-size: 2.2rem; 
+            color: var(--primary); 
+            margin-bottom: 15px; 
+            font-weight: 700; 
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-tag { 
+            font-size: 1.1rem; 
+            color: var(--gray); 
+            max-width: 600px; 
+            margin: 0 auto; 
+            font-weight: 400;
+        }
         
-        h1 { font-size: 2.2rem; color: var(--dark); margin-bottom: 15px; font-weight: 700; line-height: 1.2; }
-        .hero-tag { font-size: 1.1rem; color: var(--gray); max-width: 600px; margin: 0 auto 25px auto; }
-        
-        .container { max-width: 650px; margin: 30px auto; padding: 0 20px; }
-        .section { background: white; padding: 30px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(15,23,42,0.02); border: 1px solid rgba(0,0,0,0.02); }
-        h2 { font-size: 1.4rem; margin-bottom: 20px; color: var(--dark); position: relative; padding-bottom: 8px; }
-        h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: var(--primary); border-radius: 2px; }
+        /* Главный контейнер */
+        .container { 
+            max-width: 650px; 
+            margin: 35px auto; 
+            padding: 0 20px; 
+        }
+
+        /* Эстетичные карточки секций */
+        .section { 
+            background: var(--white); 
+            padding: 35px; 
+            border-radius: 24px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 8px 24px rgba(74, 59, 50, 0.02); 
+            border: 1px solid rgba(243, 236, 228, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(74, 59, 50, 0.04);
+        }
+
+        h2 { 
+            font-size: 1.4rem; 
+            margin-bottom: 22px; 
+            color: var(--primary); 
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 3px;
+            margin-right: 12px;
+        }
         
         /* Списки преимуществ */
         ul { list-style: none; }
-        li { margin-bottom: 12px; position: relative; padding-left: 28px; color: #334155; }
-        li::before { content: "✓"; color: #3b82f6; font-weight: bold; position: absolute; left: 5px; top: 0; }
+        li { 
+            margin-bottom: 14px; 
+            position: relative; 
+            padding-left: 30px; 
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+
+        li::before { 
+            content: ""; 
+            position: absolute;
+            left: 4px;
+            top: 9px;
+            width: 7px;
+            height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--accent-light);
+        }
         
         /* Карточки отзывов */
-        .review-card { background: var(--light); padding: 15px 20px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--primary); }
-        .review-text { font-style: italic; font-size: 0.95rem; color: #334155; }
-        .review-author { font-size: 0.85rem; color: var(--gray); margin-top: 8px; font-weight: 600; }
-        
-        /* Прайс и фишки */
-        .price-box { background: var(--primary-light); border: 1px dashed var(--primary); padding: 20px; border-radius: 12px; text-align: center; margin-top: 15px; }
-        .price-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
-        .price-value { font-size: 1.6rem; font-weight: 800; color: var(--dark); margin: 5px 0; }
-        .price-sub { font-size: 1.1rem; color: var(--gray); font-weight: 600; margin-bottom: 5px; }
-        
-        /* Кнопка действия */
-        .btn { display: block; background: #2563eb; color: white; text-align: center; padding: 18px; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 1.1rem; margin-top: 30px; box-shadow: 0 10px 20px rgba(37,99,235,0.15); transition: all 0.2s; }
-        .btn:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 12px 22px rgba(37,99,235,0.2); }
-        
-        .tg-contact { text-align: center; margin-top: 20px; font-size: 0.95rem; }
-        .tg-link { color: #2563eb; font-weight: bold; text-decoration: none; }
-        .tg-link:hover { text-decoration: underline; }
+        .review-card { 
+            background: var(--bg-main); 
+            padding: 22px; 
+            border-radius: 18px; 
+            margin-bottom: 20px; 
+            border-left: 4px solid var(--accent);
+        }
 
-        footer { text-align: center; padding: 40px 20px; color: var(--gray); font-size: 0.85rem; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 40px; }
+        .review-text { 
+            font-style: italic; 
+            font-size: 0.98rem; 
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .review-author { 
+            font-size: 0.8rem; 
+            color: var(--accent); 
+            margin-top: 12px; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        
+        /* Прайс-бокс под эстетику кофейни */
+        .price-box { 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            padding: 30px 20px; 
+            border-radius: 20px; 
+            text-align: center; 
+            margin: 25px 0; 
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(74, 59, 50, 0.08);
+        }
+
+        .price-title { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .price-value { 
+            font-size: 2.4rem; 
+            font-weight: 800; 
+            color: var(--white); 
+            margin: 8px 0;
+        }
+
+        .price-sub { 
+            font-size: 1.2rem; 
+            color: var(--bg-main); 
+            font-weight: 500; 
+            opacity: 0.9;
+        }
+        
+        /* Кнопка действия (Главная форма) */
+        .btn { 
+            display: block; 
+            background: var(--accent); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 18px; 
+            border-radius: 16px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            margin-top: 25px; 
+            box-shadow: 0 8px 20px rgba(124, 100, 83, 0.2); 
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover { 
+            background: var(--primary); 
+            transform: translateY(-1px); 
+            box-shadow: 0 10px 25px rgba(74, 59, 50, 0.25); 
+        }
+        
+        /* Блок социальных контактов */
+        .social-contact-container {
+            margin-top: 30px;
+            text-align: center;
+            border-top: 1px dashed rgba(74, 59, 50, 0.15);
+            padding-top: 25px;
+        }
+
+        .social-title {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--accent-light);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(74, 59, 50, 0.05);
+            min-width: 160px;
+        }
+
+        /* Настройка размеров иконок из шрифта */
+        .social-btn i {
+            font-size: 1.2rem;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        /* Эффекты наведения */
+        .social-btn.tg:hover {
+            background: #24A1DE;
+            color: var(--white);
+            border-color: #24A1DE;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(36, 161, 222, 0.3);
+        }
+
+        .social-btn.vk:hover {
+            background: #0077FF;
+            color: var(--white);
+            border-color: #0077FF;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 119, 255, 0.3);
+        }
+
+        /* Подвал */
+        footer { 
+            text-align: center; 
+            padding: 50px 20px; 
+            color: var(--gray); 
+            font-size: 0.85rem; 
+            border-top: 1px solid rgba(74, 59, 50, 0.08); 
+            margin-top: 50px; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -73,15 +307,15 @@
             <h2>Почему Korleedream?</h2>
             <ul>
                 <li><strong>Погружение в контекст:</strong> Никаких сухих фраз из старых учебников. Изучаем живой язык, культуру, дорамы и то, как реально общаются корейцы.</li>
-                <li><strong>Умная экосистема (LMS):</strong> Интеграция с Google Classroom, интерактивными карточками Quizlet для заучивания слов и онлайн-тестами для легкого закрепления.</li>
+                <li><strong>Умная экосистема (LMS):</strong> Интеграция с Google Classroom, интерактивными карточками Quizlet для заучивания слов и онлайн-тестам для легкого закрепления.</li>
                 <li><strong>Умные повторения:</strong> Специальная методика подскажет, когда и какие слова нужно повторить, чтобы они навсегда остались в памяти.</li>
-                <li><strong>Комфортная атмосфера:</strong> Занятия проходят без стресса. Ошибаться — это круто, ведь именно так мы учимся говорить свободно!</li>
+                <li><strong>Комфортная атмосфера:</strong> Занятия проходят без стресса. Ошибаться — это нормально, ведь именно так мы учимся говорить свободно!</li>
             </ul>
         </div>
 
         <div class="section">
             <h2>О преподавателе</h2>
-            <p style="color: #334155; margin-bottom: 15px;">Привет! Меня зовут Ли Су. Я носитель корейского языка и ваш проводник в мир корейской культуры. Благодаря опыту жизни и учебы в СНГ, я отлично понимаю менталитет русскоязычных студентов и знаю, как объяснить сложную азиатскую грамматику простыми словами.</p>
+            <p style="color: var(--dark); margin-bottom: 20px; font-size: 1.05rem;">Привет! Меня зовут Ли Су. Я носитель корейского языка и ваш проводник в мир корейской культуры. Благодаря опыту жизни и учебы в СНГ, я отлично понимаю менталитет русскоязычных студентов и знаю, как объяснить сложную азиатскую грамматику простыми словами.</p>
             <ul>
                 <li>Носитель языка с чистым произношением.</li>
                 <li>Опыт обучения русскоязычных студентов — более 5 лет.</li>
@@ -93,29 +327,66 @@
             <h2>Результаты наших студентов</h2>
             
             <div class="review-card">
-                <p class="review-text">«Пыталась учить корейский сама, но постоянно бросала. С Ли Су всё разложилось по полочкам, уроки очень логичные и понятные!»</p>
-                <div class="review-author">— Студент А (Обучение с нуля)</div>
+                <p class="review-text">«Начал изучать корейский из интереса к культуре и желанию посетить Корею. Нравится структурированный подход к обучению и возможность задавать любые вопросы о языке и жизни в Корее. Уже через несколько месяцев начал узнавать слова и выражения в дорамах и лучше понимать речь на слух.»</p>
+                <div class="review-author">— Студент А</div>
             </div>
             
             <div class="review-card">
-                <p class="review-text">«В самом начале я не знала даже алфавита. Сейчас я уже могу понемногу формулировать свои мысли на корейском. Атмосфера на уроках невероятно дружелюбная.»</p>
-                <div class="review-author">— Студент Б (Обучение с нуля)</div>
+                <p class="review-text">«Изучаю корейский, потому что хочу учиться и жить в Корее. На уроках много практики, а грамматика объясняется очень понятно. Занятия проходят в комфортной атмосфере, поэтому учиться легко и интересно.»</p>
+                <div class="review-author">— Студент Б</div>
+            </div>
+
+            <div class="review-card">
+                <p class="review-text">«Долго пыталась учить корейский самостоятельно, но прогресс появился только с преподавателем. Уроки проходят легко и понятно, без перегруза. Самое главное — вижу результат и сохраняю мотивацию заниматься дальше.»</p>
+                <div class="review-author">— Студент В</div>
+            </div>
+
+            <div class="review-card">
+                <p class="review-text">«Начала учить корейский для будущей поездки в Южную Корею. Очень нравятся примеры из жизни, благодаря которым новые слова и правила легко запоминаются. Каждый урок проходит интересно и приносит новые знания.»</p>
+                <div class="review-author">— Студент Г</div>
+            </div>
+
+            <div class="review-card">
+                <p class="review-text">«Изучаю корейский с нуля для жизни и работы в Корее в будущем. Нравится не только изучение языка, но и возможность узнавать больше о корейской культуре. На уроках комфортно, а ошибки воспринимаются как часть обучения, что помогает не бояться говорить.»</p>
+                <div class="review-author">— Студент Д</div>
+            </div>
+
+            <div class="review-card">
+                <p class="review-text">«Мне понравилось звучание корейского языка, поэтому решила начать обучение. Раньше многое казалось сложным, но благодаря понятным объяснениям всё стало логичным и доступным. Особенно нравятся реальные примеры и рассказы о жизни в Корее.»</p>
+                <div class="review-author">— Студент Е</div>
             </div>
         </div>
 
         <div class="section">
             <h2>Формат занятий</h2>
-            <p style="color: #334155; margin-bottom: 15px;">Все уроки проходят 1 на 1 в онлайн-формате с использованием платформ <strong>Zoom</strong>, <strong>Google Classroom</strong> и <strong>Яндекс Телемост</strong>. Вам не нужно покупать учебники — все интерактивные материалы, персональные словари и доступ в закрытый учебный класс входят в стоимость.</p>
+            <p style="color: var(--dark); margin-bottom: 10px; font-size: 1.05rem;">Все уроки проходят 1 на 1 в онлайн-формате с использованием платформ <strong>Zoom</strong>, <strong>Google Classroom</strong> и <strong>Яндекс Телемост</strong>.</p>
+            <p style="color: var(--dark); font-size: 1.05rem;">Вам не нужно покупать учебники — все интерактивные материалы, персональные словари и доступ в закрытый учебный класс входят в стоимость.</p>
             
             <div class="price-box">
-                <div class="price-title">Индивидуальный коучинг (60 минут)</div>
+                <div class="price-title">Индивидуальный коучинг</div>
                 <div class="price-value">2 000 руб.</div>
-                <div class="price-sub">$25 / 35,000 ₩</div>
+                <div class="price-sub">$25 / 35,000 ₩ <span style="font-size: 0.9rem; opacity: 0.7;">за 60 минут</span></div>
             </div>
 
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCb7W7DpCXvkD40VrMjygxC_QryZ6ksmfXLmnqgZehyf9Neg/viewform?usp=publish-editor" class="btn" target="_blank">Оставить заявку на обучение</a>
             
-            <p class="tg-contact">Есть вопросы? Напишите напрямую в Telegram: <a href="https://t.me/suoppaaa" class="tg-link" target="_blank">@suoppaaa</a></p>
+            <div class="social-contact-container">
+                <div class="social-title">Остались вопросы? Свяжитесь напрямую:</div>
+                <div class="social-buttons">
+                    
+                    <a href="https://t.me/suoppaaa" class="social-btn tg" target="_blank">
+                        <i class="fa-brands fa-telegram"></i>
+                        Telegram
+                    </a>
+
+                    <a href="https://vk.ru/id1084196681" class="social-btn vk" target="_blank">
+                        <i class="fa-brands fa-vk"></i>
+                        ВКонтакте
+                    </a>
+
+                </div>
+            </div>
+
         </div>
 
     </div>
