@@ -11,7 +11,7 @@
             --dark: #0f172a;
             --gray: #64748b;
             --light: #f8fafc;
-            --accent: #f59e0b;
+            --accent: #2563eb;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
         body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
@@ -42,9 +42,9 @@
         
         /* Прайс и фишки */
         .price-box { background: var(--primary-light); border: 1px dashed var(--primary); padding: 20px; border-radius: 12px; text-align: center; margin-top: 15px; }
-        .price-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
-        .price-value { font-size: 1.6rem; font-weight: 800; margin: 10px 0; color: var(--dark); }
-        .badge { display: inline-block; background: var(--accent); color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+        .price-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
+        .price-value { font-size: 1.6rem; font-weight: 800; color: var(--dark); margin: 5px 0; }
+        .price-sub { font-size: 1.1rem; color: var(--gray); font-weight: 600; margin-bottom: 5px; }
         
         /* Кнопка действия */
         .btn { display: block; background: #2563eb; color: white; text-align: center; padding: 18px; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 1.1rem; margin-top: 30px; box-shadow: 0 10px 20px rgba(37,99,235,0.15); transition: all 0.2s; }
@@ -65,7 +65,6 @@
         </div>
         <h1>Уверенный корейский язык с личным коучем</h1>
         <p class="hero-tag">AI помогает переводить, а Korleedream учит говорить. Индивидуальный подход без скучной зубрежки и страха ошибок.</p>
-        <span class="badge">Первый пробный урок — Бесплатно</span>
     </header>
 
     <div class="container">
@@ -74,7 +73,7 @@
             <h2>Почему Korleedream?</h2>
             <ul>
                 <li><strong>Погружение в контекст:</strong> Никаких сухих фраз из старых учебников. Изучаем живой язык, культуру, дорамы и то, как реально общаются корейцы.</li>
-                <li><strong>Умная экосистема (LMS):</strong> Доступ к Google Classroom, интерактивным карточкам Quizlet для заучивания слов и онлайн-тестам для легкого закрепления.</li>
+                <li><strong>Умная экосистема (LMS):</strong> Интеграция с Google Classroom, интерактивными карточками Quizlet для заучивания слов и онлайн-тестами для легкого закрепления.</li>
                 <li><strong>Умные повторения:</strong> Специальная методика подскажет, когда и какие слова нужно повторить, чтобы они навсегда остались в памяти.</li>
                 <li><strong>Комфортная атмосфера:</strong> Занятия проходят без стресса. Ошибаться — это круто, ведь именно так мы учимся говорить свободно!</li>
             </ul>
@@ -97,29 +96,24 @@
                 <p class="review-text">«Пыталась учить корейский сама, но постоянно бросала. С Ли Су всё разложилось по полочкам, уроки очень логичные и понятные!»</p>
                 <div class="review-author">— Студент А (Обучение с нуля)</div>
             </div>
-
-            <div class="review-card">
-                <p class="review-text">«Спустя полгода занятий я поймала себя на мысли, что иду по улице, слушаю корейскую речь в наушниках и начинаю понимать контекст без субтитров!»</p>
-                <div class="review-author">— Студент Ф (Разговорный курс)</div>
-            </div>
             
             <div class="review-card">
                 <p class="review-text">«В самом начале я не знала даже алфавита. Сейчас я уже могу понемногу формулировать свои мысли на корейском. Атмосфера на уроках невероятно дружелюбная.»</p>
-                <div class="review-author">— Студент Б (Базовый корейский)</div>
+                <div class="review-author">— Студент Б (Обучение с нуля)</div>
             </div>
         </div>
 
         <div class="section">
             <h2>Формат занятий</h2>
-            <p style="color: #334155;">Все уроки проходят 1 на 1 в онлайн-формате (Zoom / Skype / Telegram). Вам не нужно покупать учебники — все интерактивные материалы, персональные словари и доступ в закрытый учебный класс входят в стоимость.</p>
+            <p style="color: #334155; margin-bottom: 15px;">Все уроки проходят 1 на 1 в онлайн-формате с использованием платформ <strong>Zoom</strong>, <strong>Google Classroom</strong> и <strong>Яндекс Телемост</strong>. Вам не нужно покупать учебники — все интерактивные материалы, персональные словари и доступ в закрытый учебный класс входят в стоимость.</p>
             
             <div class="price-box">
-                <div class="price-title">Индивидуальный коучинг</div>
-                <div class="price-value">1 500 руб. / 60 мин</div>
-                <p style="font-size: 0.9rem; color: var(--gray);">Пробная диагностика (20 минут) — бесплатно</p>
+                <div class="price-title">Индивидуальный коучинг (60 минут)</div>
+                <div class="price-value">2 000 руб.</div>
+                <div class="price-sub">$25 / 35,000 ₩</div>
             </div>
 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCb7W7DpCXvkD40VrMjygxC_QryZ6ksmfXLmnqgZehyf9Neg/viewform?usp=publish-editor" class="btn" target="_blank">Записаться на пробный урок</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCb7W7DpCXvkD40VrMjygxC_QryZ6ksmfXLmnqgZehyf9Neg/viewform?usp=publish-editor" class="btn" target="_blank">Оставить заявку на обучение</a>
             
             <p class="tg-contact">Есть вопросы? Напишите напрямую в Telegram: <a href="https://t.me/suoppaaa" class="tg-link" target="_blank">@suoppaaa</a></p>
         </div>
