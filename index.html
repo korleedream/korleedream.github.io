@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korleedream — Онлайн-коучинг корейского языка</title>
+    <style>
+        :root {
+            --primary: #0a2540; /* Глубокий синий под цвет логотипа */
+            --primary-light: #eef2ff;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --accent: #f59e0b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+        
+        header { background: white; text-align: center; padding: 40px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        
+        /* Стили для логотипа-картинки */
+        .logo-container { margin-bottom: 15px; }
+        .site-logo { max-width: 220px; height: auto; object-fit: contain; }
+        
+        h1 { font-size: 2.2rem; color: var(--dark); margin-bottom: 15px; font-weight: 700; line-height: 1.2; }
+        .hero-tag { font-size: 1.1rem; color: var(--gray); max-width: 600px; margin: 0 auto 25px auto; }
+        
+        .container { max-width: 650px; margin: 30px auto; padding: 0 20px; }
+        .section { background: white; padding: 30px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(15,23,42,0.02); border: 1px solid rgba(0,0,0,0.02); }
+        h2 { font-size: 1.4rem; margin-bottom: 20px; color: var(--dark); position: relative; padding-bottom: 8px; }
+        h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: var(--primary); border-radius: 2px; }
+        
+        /* Списки преимуществ */
+        ul { list-style: none; }
+        li { margin-bottom: 12px; position: relative; padding-left: 28px; color: #334155; }
+        li::before { content: "✓"; color: #3b82f6; font-weight: bold; position: absolute; left: 5px; top: 0; }
+        
+        /* Карточки отзывов */
+        .review-card { background: var(--light); padding: 15px 20px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--primary); }
+        .review-text { font-style: italic; font-size: 0.95rem; color: #334155; }
+        .review-author { font-size: 0.85rem; color: var(--gray); margin-top: 8px; font-weight: 600; }
+        
+        /* Прайс и фишки */
+        .price-box { background: var(--primary-light); border: 1px dashed var(--primary); padding: 20px; border-radius: 12px; text-align: center; margin-top: 15px; }
+        .price-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .price-value { font-size: 1.6rem; font-weight: 800; margin: 10px 0; color: var(--dark); }
+        .badge { display: inline-block; background: var(--accent); color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+        
+        /* Кнопка действия */
+        .btn { display: block; background: #2563eb; color: white; text-align: center; padding: 18px; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 1.1rem; margin-top: 30px; box-shadow: 0 10px 20px rgba(37,99,235,0.15); transition: all 0.2s; }
+        .btn:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 12px 22px rgba(37,99,235,0.2); }
+        
+        .tg-contact { text-align: center; margin-top: 20px; font-size: 0.95rem; }
+        .tg-link { color: #2563eb; font-weight: bold; text-decoration: none; }
+        .tg-link:hover { text-decoration: underline; }
+
+        footer { text-align: center; padding: 40px 20px; color: var(--gray); font-size: 0.85rem; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Korleedream" class="site-logo">
+        </div>
+        <h1>Уверенный корейский язык с личным коучем</h1>
+        <p class="hero-tag">AI помогает переводить, а Korleedream учит говорить. Индивидуальный подход без скучной зубрежки и страха ошибок.</p>
+        <span class="badge">Первый пробный урок — Бесплатно</span>
+    </header>
+
+    <div class="container">
+
+        <div class="section">
+            <h2>Почему Korleedream?</h2>
+            <ul>
+                <li><strong>Погружение в контекст:</strong> Никаких сухих фраз из старых учебников. Изучаем живой язык, культуру, дорамы и то, как реально общаются корейцы.</li>
+                <li><strong>Умная экосистема (LMS):</strong> Доступ к Google Classroom, интерактивным карточкам Quizlet для заучивания слов и онлайн-тестам для легкого закрепления.</li>
+                <li><strong>Умные повторения:</strong> Специальная методика подскажет, когда и какие слова нужно повторить, чтобы они навсегда остались в памяти.</li>
+                <li><strong>Комфортная атмосфера:</strong> Занятия проходят без стресса. Ошибаться — это круто, ведь именно так мы учимся говорить свободно!</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>О преподавателе</h2>
+            <p style="color: #334155; margin-bottom: 15px;">Привет! Меня зовут Ли Су. Я носитель корейского языка и ваш проводник в мир корейской культуры. Благодаря опыту жизни и учебы в СНГ, я отлично понимаю менталитет русскоязычных студентов и знаю, как объяснить сложную азиатскую грамматику простыми словами.</p>
+            <ul>
+                <li>Носитель языка с чистым произношением.</li>
+                <li>Опыт обучения русскоязычных студентов — более 5 лет.</li>
+                <li>Профессионально объясняю логику языка на русском.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Результаты наших студентов</h2>
+            
+            <div class="review-card">
+                <p class="review-text">«Пыталась учить корейский сама, но постоянно бросала. С Ли Су всё разложилось по полочкам, уроки очень логичные и понятные!»</p>
+                <div class="review-author">— Студент А (Обучение с нуля)</div>
+            </div>
+
+            <div class="review-card">
+                <p class="review-text">«Спустя полгода занятий я поймала себя на мысли, что иду по улице, слушаю корейскую речь в наушниках и начинаю понимать контекст без субтитров!»</p>
+                <div class="review-author">— Студент Ф (Разговорный курс)</div>
+            </div>
+            
+            <div class="review-card">
+                <p class="review-text">«В самом начале я не знала даже алфавита. Сейчас я уже могу понемногу формулировать свои мысли на корейском. Атмосфера на уроках невероятно дружелюбная.»</p>
+                <div class="review-author">— Студент Б (Базовый корейский)</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Формат занятий</h2>
+            <p style="color: #334155;">Все уроки проходят 1 на 1 в онлайн-формате (Zoom / Skype / Telegram). Вам не нужно покупать учебники — все интерактивные материалы, персональные словари и доступ в закрытый учебный класс входят в стоимость.</p>
+            
+            <div class="price-box">
+                <div class="price-title">Индивидуальный коучинг</div>
+                <div class="price-value">1 500 руб. / 60 мин</div>
+                <p style="font-size: 0.9rem; color: var(--gray);">Пробная диагностика (20 минут) — бесплатно</p>
+            </div>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCb7W7DpCXvkD40VrMjygxC_QryZ6ksmfXLmnqgZehyf9Neg/viewform?usp=publish-editor" class="btn" target="_blank">Записаться на пробный урок</a>
+            
+            <p class="tg-contact">Есть вопросы? Напишите напрямую в Telegram: <a href="https://t.me/suoppaaa" class="tg-link" target="_blank">@suoppaaa</a></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Korleedream. Все права защищены.<br>Сделано с заботой о будущих полиглотах.</p>
+    </footer>
+
+</body>
+</html>
