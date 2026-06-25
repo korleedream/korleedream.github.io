@@ -25,12 +25,12 @@
             --cta-text: #ffffff;
             --cta-muted: rgba(255, 255, 255, 0.75);
             
-            /* Цвета для нового свитча (Светлая тема) */
-            --switch-bg: #ffffff;
+            /* Цвета для идеального свитча (Светлая тема) */
+            --switch-bg: #eef5f0;
             --switch-border: rgba(31, 42, 38, 0.15);
             --switch-thumb: #1f2a26;
-            --switch-sun: #ffa100;
-            --switch-moon: #617069;
+            --switch-icon-active: #ffffff;
+            --switch-icon-inactive: #617069;
         }
 
         /* Цвета для темной темы */
@@ -51,12 +51,12 @@
             --cta-text: #eef5f0;
             --cta-muted: #a3b2ab;
 
-            /* Цвета для нового свитча (Темная тема) */
-            --switch-bg: #121614;
+            /* Цвета для идеального свитча (Темная тема) */
+            --switch-bg: #1a201d;
             --switch-border: rgba(238, 245, 240, 0.15);
             --switch-thumb: #ffffff;
-            --switch-sun: #b38000;
-            --switch-moon: #121614;
+            --switch-icon-active: #121614;
+            --switch-icon-inactive: #a3b2ab;
         }
 
         * {
@@ -150,11 +150,11 @@
             color: var(--primary);
         }
 
-        /* Стильный Свитч Переключения Темы из image_3cd7a0.png */
+        /* Перфекционистский Свитч Переключения Темы */
         .theme-switch-container {
             position: relative;
-            width: 72px;
-            height: 38px;
+            width: 76px;
+            height: 40px;
             background-color: var(--switch-bg);
             border: 2px solid var(--switch-border);
             border-radius: 999px;
@@ -167,51 +167,69 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
+        /* Ползунок — теперь он же контейнер для активной иконки */
         .theme-switch-thumb {
             position: absolute;
             top: 3px;
             left: 4px;
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             background-color: var(--switch-thumb);
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
-            z-index: 1;
+            z-index: 3;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        /* Перемещение ползунка в темной теме */
+        /* Смещение ползунка в темной теме */
         [data-theme="dark"] .theme-switch-thumb {
-            transform: translateX(32px);
+            transform: translateX(34px);
         }
 
-        /* Иконки внутри свитча */
-        .switch-icon {
+        /* Базовый стиль для статичных фоновых иконок подложки */
+        .switch-bg-icon {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 24px;
             height: 24px;
-            z-index: 2;
+            z-index: 1;
+            color: var(--switch-icon-inactive);
             transition: color 0.3s ease;
         }
 
-        /* Солнце (Кастомное детализированное из картинки) */
-        .switch-icon-sun svg {
+        /* Специфические стили для идеального круглого солнца (SVG) */
+        .sun-svg {
             width: 18px;
             height: 18px;
             fill: none;
-            stroke: var(--switch-sun);
-            stroke-width: 2;
+            stroke: currentColor;
+            stroke-width: 2.2;
             stroke-linecap: round;
         }
         
-        .switch-icon-sun svg circle.center-dot {
-            fill: var(--switch-sun);
+        .sun-svg circle {
+            fill: currentColor;
         }
 
-        /* Прежняя луна из Font Awesome */
-        .switch-icon-moon {
-            color: var(--switch-moon);
+        /* Переключение видимости иконок внутри самого движущегося ползунка */
+        .theme-switch-thumb .sun-svg {
+            display: block;
+            color: var(--switch-icon-active);
+        }
+        .theme-switch-thumb .fa-moon {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-switch-thumb .sun-svg {
+            display: none;
+        }
+        [data-theme="dark"] .theme-switch-thumb .fa-moon {
+            display: block;
+            color: var(--switch-icon-active);
             font-size: 0.95rem;
         }
 
@@ -396,7 +414,7 @@
         .section-subtitle {
             color: var(--muted);
             font-size: 1.06rem;
- warm       }
+        }
 
         .feature-grid,
         .pricing-grid,
@@ -704,29 +722,43 @@
                     <a href="#contacts">Контакты</a>
                 </div>
                 
-                <!-- Новый интерактивный свитч (Торггл) переключения тем -->
+                <!-- Геометрически выверенный свитч переключения тем -->
                 <div class="theme-switch-container" id="themeToggle" role="button" aria-label="Переключить тему">
-                    <div class="theme-switch-thumb"></div>
-                    <div class="switch-icon switch-icon-sun">
-                        <!-- Детализированная иконка солнца со скриншота image_3cd7a0.png -->
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="4" class="center-dot" />
-                            <circle cx="12" cy="12" r="6" />
-                            <line x1="12" y1="1" x2="12" y2="3" />
-                            <line x1="12" y1="21" x2="12" y2="23" />
-                            <line x1="1" y1="12" x2="3" y2="12" />
-                            <line x1="21" y1="12" x2="23" y2="12" />
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                            <line x1="1" y1="23" x2="3" y2="21" style="display:none;" /> <!-- Компонент разметки -->
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    
+                    <!-- Ползунок, который перемещается и несет в себе активную идеально отцентрованную иконку -->
+                    <div class="theme-switch-thumb">
+                        <svg class="sun-svg" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3.5" />
+                            <line x1="12" y1="20.5" x2="12" y2="23" />
+                            <line x1="1" y1="12" x2="3.5" y2="12" />
+                            <line x1="20.5" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="4.22" x2="6" y2="6" />
+                            <line x1="18" y1="18" x2="19.78" y2="19.78" />
+                            <line x1="4.22" y1="19.78" x2="6" y2="18" />
+                            <line x1="18" y1="6" x2="19.78" y2="4.22" />
                         </svg>
-                    </div>
-                    <div class="switch-icon switch-icon-moon">
-                        <!-- Прежняя привычная луна -->
                         <i class="fa-solid fa-moon"></i>
                     </div>
+
+                    <!-- Статичные фоновые иконки для подложки свитча -->
+                    <div class="switch-bg-icon">
+                        <svg class="sun-svg" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3.5" />
+                            <line x1="12" y1="20.5" x2="12" y2="23" />
+                            <line x1="1" y1="12" x2="3.5" y2="12" />
+                            <line x1="20.5" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="4.22" x2="6" y2="6" />
+                            <line x1="18" y1="18" x2="19.78" y2="19.78" />
+                            <line x1="4.22" y1="19.78" x2="6" y2="18" />
+                            <line x1="18" y1="6" x2="19.78" y2="4.22" />
+                        </svg>
+                    </div>
+                    <div class="switch-bg-icon">
+                        <i class="fa-solid fa-moon" style="font-size: 0.95rem;"></i>
+                    </div>
+
                 </div>
             </div>
         </nav>
@@ -919,7 +951,7 @@
                 <ul class="teacher-list">
                     <li><i class="fa-solid fa-circle-check"></i><span>Носитель корейского языка с чистым произношением.</span></li>
                     <li><i class="fa-solid fa-circle-check"></i><span>Более 5 лет опыта обучения русскоязычных студентов.</span></li>
-                    <li><i class="fa-solid fa-circle-check"></i><span>Уроки проходят онлайн: Zoom, Google Classroom, Quizlet и Яндекс Телемост.</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i><span>Уроки проходят онлайн: Google Classroom, Quizlet и Яндекс Телемост.</span></li>
                     <li><i class="fa-solid fa-circle-check"></i><span>Главный фокус: понятная грамматика, говорение и регулярное повторение.</span></li>
                 </ul>
             </div>
