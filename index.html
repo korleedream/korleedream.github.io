@@ -20,6 +20,23 @@
             --accent-soft: #fff0ed;
             --line: rgba(31, 42, 38, 0.12);
             --shadow: 0 18px 45px rgba(31, 42, 38, 0.08);
+            --hero-grad: linear-gradient(135deg, #f7f8f4 0%, #eaf4ee 48%, #fff3ef 100%);
+        }
+
+        /* Цвета для темной темы */
+        [data-theme="dark"] {
+            --bg: #121614;
+            --surface: #1a201d;
+            --soft: #222b27;
+            --ink: #eef5f0;
+            --muted: #a3b2ab;
+            --primary: #439480;
+            --primary-dark: #5cb39e;
+            --accent: #ff7666;
+            --accent-soft: #381f1c;
+            --line: rgba(238, 245, 240, 0.15);
+            --shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+            --hero-grad: linear-gradient(135deg, #121614 0%, #1a2521 50%, #291c1a 100%);
         }
 
         * {
@@ -37,13 +54,19 @@
             color: var(--ink);
             font-family: Inter, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
             line-height: 1.65;
+            /* Плавный переход цветов при смене темы */
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         a {
             color: inherit;
         }
 
-        /* Исправление перекрытия заголовков фиксированной шапкой при скролле */
+        /* Секции, карточки и шапка тоже должны менять цвет плавно */
+        .topbar, .hero, .band, .feature, .price-card, .review-card, .contact-link, .final-cta, .btn {
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
         section[id] {
             scroll-margin-top: 100px;
         }
@@ -52,10 +75,15 @@
             position: sticky;
             top: 0;
             z-index: 10;
-            background: rgba(247, 248, 244, 0.88);
+            background: rgba(var(--bg), 0.88);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--line);
         }
+
+        /* Динамический фон для шапки с поддержкой размытия */
+        body:not([data-theme="dark"]) .topbar { background: rgba(247, 248, 244, 0.88); }
+        [data-theme="dark"] .topbar { background: rgba(18, 22, 20, 0.88); }
 
         .nav {
             max-width: 1080px;
@@ -82,6 +110,12 @@
             object-fit: cover;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
         .nav-links {
             display: flex;
             align-items: center;
@@ -98,9 +132,38 @@
             color: var(--primary);
         }
 
+        /* Кнопка переключения темы */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary);
+            background-color: rgba(31, 42, 38, 0.05);
+        }
+
+        [data-theme="dark"] .theme-toggle:hover {
+            background-color: rgba(238, 245, 240, 0.08);
+        }
+
+        /* Иконки режима */
+        .theme-toggle .fa-sun { display: none; }
+        [data-theme="dark"] .theme-toggle .fa-moon { display: none; }
+        [data-theme="dark"] .theme-toggle .fa-sun { display: block; }
+
         .hero {
             padding: 68px 20px 56px;
-            background: linear-gradient(135deg, #f7f8f4 0%, #eaf4ee 48%, #fff3ef 100%);
+            background: var(--hero-grad);
             border-bottom: 1px solid var(--line);
         }
 
@@ -124,6 +187,10 @@
             font-size: 0.92rem;
             font-weight: 700;
             margin-bottom: 18px;
+        }
+
+        [data-theme="dark"] .eyebrow {
+            background: rgba(67, 148, 128, 0.15);
         }
 
         h1 {
@@ -159,7 +226,7 @@
             border: 1px solid transparent;
             font-weight: 800;
             text-decoration: none;
-            transform: translateY(0); /* Исходное состояние для плавной анимации */
+            transform: translateY(0);
             transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
         }
 
@@ -167,6 +234,11 @@
             background: var(--primary);
             color: #ffffff;
             box-shadow: 0 12px 26px rgba(47, 111, 94, 0.25);
+        }
+
+        [data-theme="dark"] .btn-primary {
+            color: #121614;
+            box-shadow: 0 12px 26px rgba(67, 148, 128, 0.2);
         }
 
         .btn-primary:hover {
@@ -180,8 +252,12 @@
             border-color: var(--line);
         }
 
+        [data-theme="dark"] .btn-secondary {
+            background: rgba(26, 32, 29, 0.75);
+        }
+
         .btn-secondary:hover {
-            background: #ffffff;
+            background: var(--surface);
             transform: translateY(-2px);
         }
 
@@ -191,6 +267,11 @@
             border-radius: 14px;
             padding: 24px;
             box-shadow: var(--shadow);
+        }
+
+        [data-theme="dark"] .hero-panel {
+            background: rgba(26, 32, 29, 0.82);
+            border-color: rgba(238, 245, 240, 0.05);
         }
 
         .hero-logo {
@@ -328,11 +409,19 @@
             box-shadow: var(--shadow);
         }
 
-        /* Стиль для информационной карточки-подсказки в ценах */
+        [data-theme="dark"] .price-card.highlight {
+            border-color: rgba(67, 148, 128, 0.4);
+        }
+
         .price-card.info-card {
             background: rgba(31, 42, 38, 0.02);
             border: 2px dashed rgba(31, 42, 38, 0.15);
             box-shadow: none;
+        }
+
+        [data-theme="dark"] .price-card.info-card {
+            background: rgba(238, 245, 240, 0.02);
+            border-color: rgba(238, 245, 240, 0.2);
         }
 
         .badge {
@@ -395,6 +484,10 @@
             border-color: rgba(47, 111, 94, 0.12);
         }
 
+        [data-theme="dark"] .review-card {
+            border-color: rgba(238, 245, 240, 0.05);
+        }
+
         .review-author {
             margin-top: 14px;
             color: var(--primary-dark);
@@ -422,7 +515,7 @@
 
         .final-cta {
             background: var(--ink);
-            color: #ffffff;
+            color: var(--bg);
             border-radius: 16px;
             padding: 34px;
             display: grid;
@@ -431,15 +524,28 @@
             align-items: center;
         }
 
+        body:not([data-theme="dark"]) .final-cta {
+            color: #ffffff;
+        }
+
         .final-cta p {
             color: rgba(255, 255, 255, 0.75);
             margin-top: 8px;
         }
 
+        [data-theme="dark"] .final-cta p {
+            color: rgba(238, 245, 240, 0.7);
+        }
+
         .final-cta .btn-primary {
             background: #ffffff;
-            color: var(--ink);
+            color: #1f2a26;
             box-shadow: none;
+        }
+
+        [data-theme="dark"] .final-cta .btn-primary {
+            background: #ffffff;
+            color: #121614;
         }
 
         .contacts {
@@ -532,11 +638,18 @@
                 <img src="logo.jpeg" alt="Korleedream">
                 <span>Korleedream</span>
             </a>
-            <div class="nav-links">
-                <a href="#formats">Форматы</a>
-                <a href="#prices">Стоимость</a>
-                <a href="#start">Как начать</a>
-                <a href="#contacts">Контакты</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#formats">Форматы</a>
+                    <a href="#prices">Стоимость</a>
+                    <a href="#start">Как начать</a>
+                    <a href="#contacts">Контакты</a>
+                </div>
+                <!-- Кнопка переключения темы -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
+                </button>
             </div>
         </nav>
     </div>
@@ -791,5 +904,33 @@
     <footer>
         <p>© 2026 Korleedream. Все права защищены.</p>
     </footer>
+
+    <!-- Скрипт переключения темы -->
+    <script>
+        const toggleBtn = document.getElementById('themeToggle');
+        
+        // Определяем стартовую тему: проверяем кэш или системные настройки пользователя
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        // Логика кнопки
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = 'light';
+            
+            if (currentTheme === 'light') {
+                newTheme = 'dark';
+            }
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
 </body>
 </html>
