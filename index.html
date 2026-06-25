@@ -80,6 +80,7 @@
 
         body {
             min-width: 320px;
+            overflow-x: hidden;
             background:
                 radial-gradient(circle at top left, rgba(5, 167, 216, 0.14), transparent 34rem),
                 radial-gradient(circle at 88% 12%, rgba(124, 58, 237, 0.12), transparent 32rem),
@@ -275,8 +276,8 @@
         .btn-secondary {
             background: var(--surface-solid);
             color: var(--ink);
-            border-color: var(--line);
-            box-shadow: 0 10px 28px rgba(22, 32, 51, 0.06);
+            border-color: color-mix(in srgb, var(--primary) 28%, var(--line));
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.1);
         }
 
         .btn-telegram {
@@ -290,10 +291,32 @@
             background: color-mix(in srgb, var(--vk) 14%, var(--surface-solid));
             color: var(--ink);
             border-color: color-mix(in srgb, var(--vk) 42%, var(--line));
+            box-shadow: 0 12px 30px rgba(0, 119, 255, 0.12);
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus-visible {
+            box-shadow: 0 16px 38px rgba(37, 99, 235, 0.18), 0 0 22px rgba(124, 58, 237, 0.1);
+        }
+
+        .btn-telegram:hover,
+        .btn-telegram:focus-visible {
+            box-shadow: 0 16px 38px rgba(34, 158, 217, 0.22), 0 0 24px rgba(34, 211, 238, 0.14);
+        }
+
+        .btn-vk:hover,
+        .btn-vk:focus-visible {
+            box-shadow: 0 16px 38px rgba(0, 119, 255, 0.22), 0 0 24px rgba(96, 165, 250, 0.14);
         }
 
         .section {
             padding: 74px 20px;
+            scroll-margin-top: 110px;
+        }
+
+        .hero,
+        #prices {
+            scroll-margin-top: 110px;
         }
 
         .section.alt {
@@ -786,13 +809,44 @@
             gap: 10px;
         }
 
-        .qr-note {
+        .vk-qr-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 14px;
+            margin-top: 14px;
+            padding: 14px;
+            border: 1px solid color-mix(in srgb, var(--vk) 24%, var(--line));
+            border-radius: var(--radius);
+            background: color-mix(in srgb, var(--surface-solid) 82%, transparent);
+        }
+
+        .vk-qr {
+            width: 112px;
+            height: 112px;
+            padding: 8px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #ffffff;
+            object-fit: contain;
+        }
+
+        .vk-qr-card strong {
+            display: block;
+            color: var(--ink);
+            font-size: 1rem;
+            font-weight: 950;
+        }
+
+        .vk-qr-card span {
+            display: block;
+            margin-top: 3px;
             color: var(--muted);
             font-size: 0.94rem;
         }
 
         .footer {
-            padding: 38px 20px;
+            padding: 38px 20px calc(38px + env(safe-area-inset-bottom));
             border-top: 1px solid var(--line);
             background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
         }
@@ -931,6 +985,12 @@
         }
 
         @media (max-width: 700px) {
+            .section,
+            .hero,
+            #prices {
+                scroll-margin-top: 120px;
+            }
+
             .nav {
                 min-height: 68px;
             }
@@ -968,7 +1028,17 @@
             }
 
             h1 {
-                font-size: clamp(2rem, 10vw, 2.55rem);
+                font-size: clamp(1.78rem, 8.6vw, 2.28rem);
+                line-height: 1.08;
+            }
+
+            h2 {
+                font-size: clamp(1.42rem, 7vw, 1.95rem);
+                line-height: 1.16;
+            }
+
+            .section-head {
+                margin-bottom: 22px;
             }
 
             .hero-lead {
@@ -1040,6 +1110,25 @@
 
             .contact-panel {
                 padding: 22px;
+            }
+
+            #contacts {
+                padding-bottom: calc(68px + env(safe-area-inset-bottom));
+            }
+
+            .vk-qr-card {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+            }
+
+            .vk-qr {
+                width: 132px;
+                height: 132px;
+            }
+
+            .footer {
+                padding-bottom: calc(54px + env(safe-area-inset-bottom));
             }
 
             .footer-links {
@@ -1297,7 +1386,7 @@
                         <h3>Mini Group</h3>
                         <div class="price-main">5900 ₽</div>
                         <div class="price-meta">4 недели / 8 занятий / 99 000 ₩ / $75</div>
-                        <p class="price-description">Мини-группа 3–5 человек для тех, кто уже читает хангыль и хочет начать говорить простыми фразами. Запуск будет при наборе группы.</p>
+                        <p class="price-description">Мини-группа 3–5 человек для тех, кто уже читает хангыль и хочет начать говорить простыми фразами. Цена указана за одного ученика. Запуск будет при наборе группы.</p>
                         <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSeCb7W7DpCXvkD40VrMjygxC_QryZ6ksmfXLmnqgZehyf9Neg/viewform" target="_blank" rel="noopener">Встать в лист ожидания</a>
                     </article>
                 </div>
@@ -1425,16 +1514,22 @@
                     <div>
                         <span class="section-kicker">Контакты</span>
                         <h2>Запишитесь на пробное занятие</h2>
-                        <p class="section-lead">Главный шаг — оставить заявку. Если удобнее сначала написать лично, используйте Telegram.</p>
+                        <p class="section-lead">Главный шаг — оставить заявку. Если удобнее сначала написать лично, используйте Telegram или VK.</p>
                     </div>
                     <div>
                         <div class="contact-actions">
                             <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeCb7W7DpCXvkD40VrMjygxC_QryZ6ksmfXLmnqgZehyf9Neg/viewform" target="_blank" rel="noopener">Заявка на урок</a>
-                            <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSeSqYf-DNRi5g5DhjK9ynqpKnQPfKQmb_d8AVT1ze78Ri2HGg/viewform" target="_blank" rel="noopener">Level Test</a>
-                            <a class="btn btn-telegram" href="https://t.me/suoppaaa" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSeSqYf-DNRi5g5DhjK9ynqpKnQPfKQmb_d8AVT1ze78Ri2HGg/viewform" target="_blank" rel="noopener">Пройти Level Test</a>
+                            <a class="btn btn-telegram" href="https://t.me/suoppaaa" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> Написать в Telegram</a>
                             <a class="btn btn-vk" href="https://vk.ru/id1084196681" target="_blank" rel="noopener"><i class="fa-brands fa-vk"></i> VK</a>
                         </div>
-                        <p class="qr-note">QR-код VK можно добавить позже, если файл будет загружен в проект.</p>
+                        <div class="vk-qr-card" aria-label="QR-код VK">
+                            <img class="vk-qr" src="vk-qr.png" alt="QR-код VK" onerror="this.onerror=null;this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAIAAADdBSngAAADvklEQVR42u3bsXXDMBBEQdWi/nuUW3CAu12C82PbIoGBg3vQ5ydV9rEEQlNCU2hKaApNCU0JTaEpoSk0JTQlNIWmhKbQlNAUmhKaEppCU0JTaEoPp/mN1v8Wp57nPXuBJppoookmmmiiiSaaaKKJ5uYi9n9WG9///NYde4EmmmiiiSaaaKKJJppooonm3COe2rC57dl8wrltbtsLNNFEE0000UQTTTTRRBNNNNHsuRQyN4RCE0000UQTTTTRRBNNNNFEE837aM5dwtgcJ6GJJppoookmmmiiiSaaaKKJ5sQjZpc++xan3r3tLdBEE0000UQTTTTRRBNNNNHcpLnZ3Bbe8TPZvUATTTTRRBNNNNFEE0000URzk2Zb/dcpskOf/tBEE0000UQTTTTRRBNNNNGco5AdWGRHIW1fPum//oImmmiiiSaaaKKJJppooolmdun7N6PtAkr2EF578whNNNFEE0000UQTTTTRRPNqmnMQswdsE+t7QhNNNNFEE0000UQTTTTRRHNuiNB2oWHuyPUfy/7DgyaaaKKJJppoookmmmiiiWZ2ENMGenOb71gNNNFEE0000UQTTTTRRBNNNPtpZsdScwOdTfSn3n1zd9BEE0000UQTTTTRRBNNNNHcpPkd69SG9Y9LslyuHR6hiSaaaKKJJppoookmmmi+jOYm3+zzzB2VzfdqGxWhiSaaaKKJJppoookmmmii2TYc2Rw5bZLKXlIxPEITTTTRRBNNNNFEE0000XwPzX52c8iyz9x2RQZNNNFEE0000UQTTTTRRBPNO2ie+qzs4XniUdlkhyaaaKKJJppoookmmmiiiWYbzSzf7F9uu07RhhVNNNFEE0000UQTTTTRRBPNtofObmEbss3R1eYIDE000UQTTTTRRBNNNNFEE83fpbVdJWmj0HZJBU000UQTTTTRRBNNNNFEE83+ocYdXyeYW8O5gVd2xdBEE0000UQTTTTRRBNNNNE8taybWzi3PZvPs7nOm0MxNNFEE0000UQTTTTRRBNNNNtoZocj7zlOc+uMJppoookmmmiiiSaaaKKJJppP/6wnHp4XXe9AE0000UQTTTTRRBNNNNFEs4zm3IWPuY3/RkMTTTTRRBNNNNFEE0000UTziTSzn7U5Bto8PNl/LmiiiSaaaKKJJppoookmmmj208yOMOYWum3I8sRjgCaaaKKJJppoookmmmiiieYcTQlNoSmhKaEpNCU0haaEptCU0JTQFJoSmkJTQlNCU2hKaApNCU0JTaEpoakr+gNjBCV2QHJbegAAAABJRU5ErkJggg==';">
+                            <div>
+                                <strong>VK</strong>
+                                <span>Можно написать через VK</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1448,7 +1543,7 @@
                     <img class="logo" src="logo.jpeg" alt="KorleeDream">
                     <span>KorleeDream</span>
                 </div>
-                <p class="footer-text">© 2026 KorleeDream. Все права защищены.<br>Сделано с заботой о будущих полиглотах.</p>
+                <p class="footer-text">© 2026 Korleedream. Все права защищены.<br>Сделано с заботой о будущих полиглотах.</p>
             </div>
             <div class="footer-links" aria-label="Ссылки в футере">
                 <a href="https://t.me/suoppaaa" target="_blank" rel="noopener">Telegram</a>
