@@ -555,6 +555,7 @@
             margin-top: 20px;
         }
 
+        /* Измененная анимация кнопок соцсетей (Плавная заливка цветом вместо обводки) */
         .contact-link {
             display: inline-flex;
             align-items: center;
@@ -562,14 +563,23 @@
             text-decoration: none;
             border: 1px solid var(--line);
             background: var(--surface);
+            color: var(--ink);
             border-radius: 8px;
             padding: 12px 15px;
             font-weight: 800;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
 
         .contact-link:hover {
-            border-color: rgba(47, 111, 94, 0.4);
-            color: var(--primary-dark);
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .contact-link:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #121614; /* Темный текст для контраста в темной теме */
         }
 
         footer {
@@ -635,7 +645,7 @@
     <div class="topbar">
         <nav class="nav" aria-label="Главная навигация">
             <a class="brand" href="#top">
-                <img src="logo.jpeg" alt="Korleedream">
+                <img src="favicon.png" alt="Korleedream">
                 <span>Korleedream</span>
             </a>
             <div class="nav-right">
@@ -645,10 +655,10 @@
                     <a href="#start">Как начать</a>
                     <a href="#contacts">Контакты</a>
                 </div>
-                <!-- Кнопка переключения темы с новым аккуратным солнышком -->
+                <!-- Кнопка переключения темы с красивым плотным солнышком -->
                 <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
                     <i class="fa-solid fa-moon"></i>
-                    <i class="fa-regular fa-sun"></i>
+                    <i class="fa-solid fa-sun"></i>
                 </button>
             </div>
         </nav>
@@ -711,7 +721,7 @@
                     </article>
                     <article class="feature">
                         <i class="fa-solid fa-users"></i>
-                        <h3>Минни-Группа</h3>
+                        <h3>Мини-Группа</h3>
                         <p>3-5 учеников, 4 недели, 8 занятий по 60 минут. Для тех, кто уже читает хангыль.</p>
                     </article>
                 </div>
@@ -757,7 +767,7 @@
                         <div class="price-name">Пакет 4 урока</div>
                         <div class="price-main">7 600 руб.</div>
                         <div class="price-currency">132 000 ₩ / $95</div>
-                        <p class="price-desc">Подходит, если хотите заниматься стабильно без оплаты каждого урока отдельно.</p>
+                        <p class="price-desc">Подходит, if хотите заниматься стабильно без оплаты каждого урока отдельно.</p>
                         <ul class="price-list">
                             <li><i class="fa-solid fa-check"></i><span>4 занятия по 60 минут</span></li>
                             <li><i class="fa-solid fa-check"></i><span>План на месяц</span></li>
