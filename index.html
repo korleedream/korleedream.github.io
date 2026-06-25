@@ -31,6 +31,12 @@
             --switch-thumb: #1f2a26;
             --switch-icon-active: #ffffff;
             --switch-icon-inactive: #617069;
+
+            /* Брендовые цвета кнопок контактов (Светлая тема) */
+            --tg-color: #24A1DE;
+            --tg-hover: #208fcf;
+            --vk-color: #0077FF;
+            --vk-hover: #0066dd;
         }
 
         /* Цвета для темной темы */
@@ -57,6 +63,12 @@
             --switch-thumb: #ffffff;
             --switch-icon-active: #121614;
             --switch-icon-inactive: #a3b2ab;
+
+            /* Брендовые цвета кнопок контактов (Темная тема — чуть глубже для баланса) */
+            --tg-color: #1d84b5;
+            --tg-hover: #24A1DE;
+            --vk-color: #005ecb;
+            --vk-hover: #0077FF;
         }
 
         * {
@@ -167,7 +179,6 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Ползунок — теперь он же контейнер для активной иконки */
         .theme-switch-thumb {
             position: absolute;
             top: 3px;
@@ -184,12 +195,10 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        /* Смещение ползунка в темной теме */
         [data-theme="dark"] .theme-switch-thumb {
             transform: translateX(34px);
         }
 
-        /* Базовый стиль для статичных фоновых иконок подложки */
         .switch-bg-icon {
             display: flex;
             align-items: center;
@@ -201,7 +210,6 @@
             transition: color 0.3s ease;
         }
 
-        /* Специфические стили для идеального круглого солнца (SVG) */
         .sun-svg {
             width: 18px;
             height: 18px;
@@ -215,7 +223,6 @@
             fill: currentColor;
         }
 
-        /* Переключение видимости иконок внутри самого движущегося ползунка */
         .theme-switch-thumb .sun-svg {
             display: block;
             color: var(--switch-icon-active);
@@ -615,37 +622,64 @@
             background: var(--soft);
         }
 
+        /* Обновленная Сетка Секции Контактов */
         .contacts {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 28px;
         }
 
+        /* Базовый дизайн полноценной объемной кнопки связи */
         .contact-link {
             display: inline-flex;
             align-items: center;
-            gap: 9px;
+            justify-content: center;
+            gap: 10px;
             text-decoration: none;
-            border: 1px solid var(--line);
-            background: var(--surface);
-            color: var(--ink);
-            border-radius: 8px;
-            padding: 12px 15px;
+            min-height: 52px;
+            padding: 14px 24px;
             font-weight: 800;
-            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+            font-size: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            transform: translateY(0);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .contact-link:hover {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
         }
 
-        [data-theme="dark"] .contact-link:hover {
+        /* Кнопка: Заявка на урок (Цветовая палитра темы сайта) */
+        .contact-link.lnk-lesson {
             background-color: var(--primary);
-            border-color: var(--primary);
+            color: #ffffff;
+        }
+        [data-theme="dark"] .contact-link.lnk-lesson {
             color: #121614;
+        }
+        .contact-link.lnk-lesson:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Кнопка: Telegram (Фирменный стиль) */
+        .contact-link.lnk-tg {
+            background-color: var(--tg-color);
+            color: #ffffff;
+        }
+        .contact-link.lnk-tg:hover {
+            background-color: var(--tg-hover);
+        }
+
+        /* Кнопка: ВКонтакте (Фирменный стиль) */
+        .contact-link.lnk-vk {
+            background-color: var(--vk-color);
+            color: #ffffff;
+        }
+        .contact-link.lnk-vk:hover {
+            background-color: var(--vk-hover);
         }
 
         footer {
@@ -693,6 +727,7 @@
             .hero-actions,
             .contacts {
                 flex-direction: column;
+                gap: 12px;
             }
 
             .btn,
@@ -722,10 +757,7 @@
                     <a href="#contacts">Контакты</a>
                 </div>
                 
-                <!-- Геометрически выверенный свитч переключения тем -->
                 <div class="theme-switch-container" id="themeToggle" role="button" aria-label="Переключить тему">
-                    
-                    <!-- Ползунок, который перемещается и несет в себе активную идеально отцентрованную иконку -->
                     <div class="theme-switch-thumb">
                         <svg class="sun-svg" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="5" />
@@ -741,7 +773,6 @@
                         <i class="fa-solid fa-moon"></i>
                     </div>
 
-                    <!-- Статичные фоновые иконки для подложки свитча -->
                     <div class="switch-bg-icon">
                         <svg class="sun-svg" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="5" />
@@ -758,7 +789,6 @@
                     <div class="switch-bg-icon">
                         <i class="fa-solid fa-moon" style="font-size: 0.95rem;"></i>
                     </div>
-
                 </div>
             </div>
         </nav>
@@ -993,16 +1023,17 @@
                     </a>
                 </div>
 
+                <!-- Контакты стали яркими и очевидными интерактивными кнопками -->
                 <div class="contacts" aria-label="Контакты">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCb7W7DpCXvkD40VrMjygxC_QryZ6ksmfXLmnqgZehyf9Neg/viewform?usp=publish-editor" class="contact-link" target="_blank" rel="noopener">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCb7W7DpCXvkD40VrMjygxC_QryZ6ksmfXLmnqgZehyf9Neg/viewform?usp=publish-editor" class="contact-link lnk-lesson" target="_blank" rel="noopener">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Заявка на урок
                     </a>
-                    <a href="https://t.me/suoppaaa" class="contact-link" target="_blank" rel="noopener">
+                    <a href="https://t.me/suoppaaa" class="contact-link lnk-tg" target="_blank" rel="noopener">
                         <i class="fa-brands fa-telegram"></i>
                         Telegram
                     </a>
-                    <a href="https://vk.com/id1084196681" class="contact-link" target="_blank" rel="noopener">
+                    <a href="https://vk.com/id1084196681" class="contact-link lnk-vk" target="_blank" rel="noopener">
                         <i class="fa-brands fa-vk"></i>
                         ВКонтакте
                     </a>
